@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace GranieManager.Views;
 
-public partial class PlayersView : Window
+public partial class PlayersView : UserControl
 {
     public PlayersView()
     {

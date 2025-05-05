@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace GranieManager.Views;
 
-public partial class TrainingView : Window
+public partial class TrainingsView : UserControl
 {
-    public TrainingView()
+    public TrainingsView()
     {
         InitializeComponent();
     }

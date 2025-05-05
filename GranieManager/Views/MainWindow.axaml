@@ -10,11 +10,15 @@
         Title="GranieManager">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    
+    <Grid RowDefinitions="Auto, *">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Content="Players" Margin="10" Command="{Binding ShowPlayersViewCommand}"/>
+            <Button Content="Tournaments" Margin="10" Command="{Binding ShowTournamentsViewCommand}"/>
+            <Button Content="Trainings" Margin="10" Command="{Binding ShowTrainingsViewCommand}"/>
+        </StackPanel>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+    </Grid>
 </Window>

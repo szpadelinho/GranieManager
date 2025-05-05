@@ -5,15 +5,15 @@
         xmlns:viewModels="clr-namespace:GranieManager.ViewModels"
         xmlns:models="clr-namespace:GranieManager.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="GranieManager.Views.TournamentsView"
-        x:DataType="viewModels:TournamentsViewModel">
+        x:Class="GranieManager.Views.TrainingsView"
+        x:DataType="viewModels:TrainingsViewModel">
     
     <StackPanel>
         <TextBlock Text="{Binding Title}"/>
-        <ListBox ItemsSource="{Binding Tournaments}">
+        <ListBox ItemsSource="{Binding Trainings}">
             <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:Tournament">
-                    <TextBlock Text="{Binding Name}"/>
+                <DataTemplate x:DataType="models:Training">
+                    <TextBlock Text="{Binding Type}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

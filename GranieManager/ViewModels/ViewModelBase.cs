@@ -4,4 +4,5 @@ namespace GranieManager.ViewModels;
 
 public class ViewModelBase : ObservableObject
 {
+    
 }
