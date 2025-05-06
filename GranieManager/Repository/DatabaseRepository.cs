@@ -34,7 +34,7 @@ public class DatabaseRepository
             CREATE TABLE IF NOT EXISTS Tournaments (
                 Id SERIAL PRIMARY KEY,
                 Name TEXT,
-                ENTRY DATE,
+                Entry DATE,
                 Prize DECIMAL,
                 MinSkillRequired INTEGER
             );

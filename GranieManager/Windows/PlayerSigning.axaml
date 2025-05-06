@@ -1,0 +1,19 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GranieManager.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="680" d:DesignHeight="350"
+        Width="680" Height="350"
+        x:Class="GranieManager.Windows.PlayerSigning"
+        Title="Add a player to the competition system"
+        x:DataType="vm:PlayerSigningViewModel">
+        <StackPanel>
+                <TextBox FontSize="20" Width="600" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Text="{Binding Name}" Watermark="Your (nick)name"/>
+                <TextBox FontSize="20" Width="600" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Text="{Binding Skill}" Watermark="How would you rank your skill level? (Be honest though)"/>
+                <TextBox FontSize="20" Width="600" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Text="{Binding Stress}" Watermark="How stressed are you?"/>
+                <TextBox FontSize="20" Width="600" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Text="{Binding Fatigue}" Watermark="How tired are you?"/>
+                <TextBox FontSize="20" Width="600" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Text="{Binding Game}" Watermark="Your special game"/>
+                <Button FontSize="20" Width="200" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Content="Add to database!" Command="{Binding AddPlayerToDatabaseCommand}"/>
+        </StackPanel>
+</Window>

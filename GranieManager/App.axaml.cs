@@ -8,6 +8,7 @@ using GranieManager.Repository;
 using GranieManager.Services;
 using GranieManager.ViewModels;
 using GranieManager.Views;
+using GranieManager.Windows;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GranieManager;
@@ -58,12 +59,36 @@ public partial class App : Application
         services.AddTransient<PlayersViewModel>();
         services.AddTransient<TournamentsViewModel>();
         services.AddTransient<TrainingsViewModel>();
+        services.AddTransient<PlayerSigningViewModel>();
+        services.AddTransient<PlayerSelectionViewModel>();
         
-        services.AddTransient<PlayersView>();
-        services.AddTransient<TournamentsView>();
-        services.AddTransient<TrainingsView>();
+        services.AddTransient<PlayersView>(provider =>
+        {
+            var view = new PlayersView();
+            view.DataContext = provider.GetRequiredService<PlayersViewModel>();
+            return view;
+        });
+
+        services.AddTransient<TournamentsView>(provider =>
+        {
+            var view = new TournamentsView();
+            view.DataContext = provider.GetRequiredService<TournamentsViewModel>();
+            return view;
+        });
+
+        services.AddTransient<TrainingsView>(provider =>
+        {
+            var view = new TrainingsView();
+            view.DataContext = provider.GetRequiredService<TrainingsViewModel>();
+            return view;
+        });
 
         services.AddSingleton<MainWindowViewModel>();
+        
+        services.AddSingleton<DatabaseRepository>(provider => new DatabaseRepository(connectionString));
+
+        services.AddTransient<PlayerSigning>();
+        services.AddTransient<PlayerSelection>();
     }
     
     public new static App Current => (App)Application.Current;
