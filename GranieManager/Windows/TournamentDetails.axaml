@@ -1,0 +1,19 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GranieManager.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="680" Height="550"
+        Icon="/Assets/osaka.ico"
+        x:Class="GranieManager.Windows.TournamentDetails"
+        x:DataType="vm:TournamentDetailsViewModel"
+        Title="Tournament Details">
+        <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="80" Margin="5" HorizontalAlignment="Center" Text="{Binding Tournament.Name}"/>
+                <TextBlock FontSize="20" Margin="5" HorizontalAlignment="Center" Text="{Binding Tournament.Id, StringFormat='ID: {0}'}"/>
+                <TextBlock FontSize="40" Margin="5" HorizontalAlignment="Center" Text="{Binding Tournament.Prize, StringFormat='Money prize: {0}'}"/>
+                <TextBlock FontSize="40" Margin="5" HorizontalAlignment="Center" Text="{Binding Tournament.MinSkillRequired, StringFormat='Knowledge required: {0}'}"/>
+                <TextBlock FontSize="40" Margin="5" HorizontalAlignment="Center" Text="{Binding Tournament.Entry, StringFormat='Date: {0}'}"/>
+        </StackPanel>
+</Window>

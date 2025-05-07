@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -8,6 +9,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using GranieManager.Models;
 using GranieManager.Services;
 using GranieManager.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GranieManager.ViewModels;
 
@@ -16,13 +18,15 @@ public partial class TrainingsViewModel : ViewModelBase, IRecipient<PlayerSelect
     [ObservableProperty] private string _title = "Trainings";
     private readonly ITrainingService _trainingService;
     private readonly IPlayerService _playerService;
+    private readonly IServiceProvider _serviceProvider;
     [ObservableProperty] private Training _selectedTraining;
     [ObservableProperty] private ObservableCollection<Training> _trainings = new ObservableCollection<Training>();
 
-    public TrainingsViewModel(ITrainingService trainingService, IPlayerService playerService)
+    public TrainingsViewModel(ITrainingService trainingService, IPlayerService playerService, IServiceProvider serviceProvider)
     {
         _trainingService = trainingService;
         _playerService = playerService;
+        _serviceProvider = serviceProvider;
         LoadTrainingAsync();
         WeakReferenceMessenger.Default.Register(this);
     }
@@ -80,6 +84,22 @@ public partial class TrainingsViewModel : ViewModelBase, IRecipient<PlayerSelect
             {
                 Debug.WriteLine("Training is corrupted");
             }
+        }
+    }
+    
+    [RelayCommand]
+    public void ShowTrainingDetails(Training? training)
+    {
+        if (training == null)
+        {
+            return;
+        }
+
+        var window = App.Current.GetService<TrainingDetails>();
+        if (window.DataContext is TrainingDetailsViewModel vm)
+        {
+            vm.Training = training;
+            window.Show();
         }
     }
 }

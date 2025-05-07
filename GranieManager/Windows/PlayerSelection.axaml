@@ -6,7 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="680" Height="550"
         x:Class="GranieManager.Windows.PlayerSelection"
-        Title="PlayerSelection"
+        Title="Player Selection"
+        Icon="/Assets/osaka.ico"
         x:DataType="vm:PlayerSelectionViewModel">
     <StackPanel Margin="10">
         <TextBlock FontSize="30" Margin="10" Text="Select the player to train"/>

@@ -62,6 +62,8 @@ public partial class App : Application
         services.AddTransient<PlayerSigningViewModel>();
         services.AddTransient<PlayerSelectionViewModel>();
         services.AddTransient<PlayerDetailsViewModel>();
+        services.AddTransient<TournamentDetailsViewModel>();
+        services.AddTransient<TrainingDetailsViewModel>();
         
         services.AddTransient<PlayersView>(provider =>
         {
@@ -91,6 +93,8 @@ public partial class App : Application
         services.AddTransient<PlayerSigning>();
         services.AddTransient<PlayerSelection>();
         services.AddTransient<PlayerDetails>();
+        services.AddTransient<TournamentDetails>();
+        services.AddTransient<TrainingDetails>();
     }
     
     public new static App Current => (App)Application.Current;

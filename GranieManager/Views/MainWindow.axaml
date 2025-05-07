@@ -7,8 +7,8 @@
         Width="680" Height="550"
         x:Class="GranieManager.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="GranieManager">
+        Icon="/Assets/osaka.ico"
+        Title="Granie Manager">
     
     <Grid RowDefinitions="Auto, *">
         <StackPanel Margin="10" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">

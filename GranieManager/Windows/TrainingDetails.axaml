@@ -1,0 +1,19 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GranieManager.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="680" Height="550"
+        Icon="/Assets/osaka.ico"
+        x:Class="GranieManager.Windows.TrainingDetails"
+        x:DataType="vm:TrainingDetailsViewModel"
+        Title="Training Details">
+        <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="80" Margin="5" HorizontalAlignment="Center" Text="{Binding Training.Type}"/>
+                <TextBlock FontSize="20" Margin="5" HorizontalAlignment="Center" Text="{Binding Training.Id, StringFormat='ID: {0}'}"/>
+                <TextBlock FontSize="40" Margin="5" HorizontalAlignment="Center" Text="{Binding Training.SkillIncrease, StringFormat='Skill gain: {0}'}"/>
+                <TextBlock FontSize="40" Margin="5" HorizontalAlignment="Center" Text="{Binding Training.FatigueIncrease, StringFormat='Fatigue increase: {0}'}"/>
+                <TextBlock FontSize="40" Margin="5" HorizontalAlignment="Center" Text="{Binding Training.StressIncrease, StringFormat='Stress increase: {0}'}"/>
+        </StackPanel>
+</Window>

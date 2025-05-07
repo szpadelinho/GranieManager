@@ -74,4 +74,20 @@ public partial class TournamentsViewModel : ViewModelBase, IRecipient<PlayerSele
             SelectedTournament = null;
         }
     }
+
+    [RelayCommand]
+    public void ShowTournamentDetails(Tournament? tournament)
+    {
+        if (tournament == null)
+        {
+            return;
+        }
+
+        var window = App.Current.GetService<TournamentDetails>();
+        if (window.DataContext is TournamentDetailsViewModel vm)
+        {
+            vm.Tournament = tournament;
+            window.Show();
+        }
+    }
 }

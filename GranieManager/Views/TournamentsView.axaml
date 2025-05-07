@@ -10,7 +10,7 @@
     
     <StackPanel>
         <TextBlock FontSize="30" Margin="10" Text="{Binding Title}"/>
-        <ListBox Margin="10" CornerRadius="10" FontSize="20" ItemsSource="{Binding Tournaments}" SelectedItem="{Binding SelectedTournament }">
+        <ListBox Margin="10" CornerRadius="10" FontSize="20" ItemsSource="{Binding Tournaments}" SelectedItem="{Binding SelectedTournament, Mode=TwoWay}" DoubleTapped="OnTournamentDoubleTapped">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:Tournament">
                     <TextBlock Text="{Binding Name}"/>

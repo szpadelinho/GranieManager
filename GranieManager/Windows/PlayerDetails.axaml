@@ -6,7 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="680" Height="550"
         x:Class="GranieManager.Windows.PlayerDetails"
-        Title="PlayerDetails"
+        Title="Player Details"
+        Icon="/Assets/osaka.ico"
         x:DataType="vm:PlayerDetailsViewModel">
         <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock FontSize="80" Margin="5" HorizontalAlignment="Center" Text="{Binding Player.Name}"/>
