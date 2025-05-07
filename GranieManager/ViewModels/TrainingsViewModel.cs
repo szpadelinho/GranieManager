@@ -11,16 +11,18 @@ using GranieManager.Windows;
 
 namespace GranieManager.ViewModels;
 
-public partial class TrainingsViewModel : ViewModelBase, IRecipient<TrainingsViewModel.PlayerSelectedMessage>
+public partial class TrainingsViewModel : ViewModelBase, IRecipient<PlayerSelectionViewModel.PlayerTrainedMessage>
 {
     [ObservableProperty] private string _title = "Trainings";
     private readonly ITrainingService _trainingService;
+    private readonly IPlayerService _playerService;
     [ObservableProperty] private Training _selectedTraining;
     [ObservableProperty] private ObservableCollection<Training> _trainings = new ObservableCollection<Training>();
 
-    public TrainingsViewModel(ITrainingService trainingService)
+    public TrainingsViewModel(ITrainingService trainingService, IPlayerService playerService)
     {
         _trainingService = trainingService;
+        _playerService = playerService;
         LoadTrainingAsync();
         WeakReferenceMessenger.Default.Register(this);
     }
@@ -57,33 +59,27 @@ public partial class TrainingsViewModel : ViewModelBase, IRecipient<TrainingsVie
         if(playerSelectionWindow.DataContext is PlayerSelectionViewModel vm)
         {
             Debug.WriteLine("Selected player selection window is called");
-            vm.Initialize(App.Current.GetService<IPlayerService>(), SelectedTraining);
+            vm.InitializeTraining(App.Current.GetService<IPlayerService>(), SelectedTraining);
             playerSelectionWindow.Show();
         }
     }
 
-    public void Receive(PlayerSelectedMessage message)
+    public async void Receive(PlayerSelectionViewModel.PlayerTrainedMessage message)
     {
-        if (SelectedTraining != null && message.SelectedPlayer != null)
+        Debug.WriteLine($"Received training {message.ChosenTraining.Type} for player {message.TrainedPlayer.Name}");
+
+        if (SelectedTraining != null && message.TrainedPlayer != null && message.ChosenTraining != null)
         {
-            Debug.WriteLine("Received player selected training");
-            Train(SelectedTraining, message.SelectedPlayer);
-            SelectedTraining = null;
-        }
-    }
-
-    private async void Train(Training training, Player player)
-    {
-        
-    }
-
-    public class PlayerSelectedMessage
-    {
-        public Player SelectedPlayer { get; }
-
-        public PlayerSelectedMessage(Player selectedPlayer)
-        {
-            SelectedPlayer = selectedPlayer;
+            if (SelectedTraining.Id == message.ChosenTraining.Id)
+            {
+                await _playerService.TrainPlayerAsync(message.TrainedPlayer, message.ChosenTraining);
+                SelectedTraining = null;
+                
+            }
+            else
+            {
+                Debug.WriteLine("Training is corrupted");
+            }
         }
     }
 }

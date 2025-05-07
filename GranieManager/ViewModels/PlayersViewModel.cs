@@ -16,7 +16,8 @@ public partial class PlayersViewModel : ViewModelBase, IRecipient<PlayerSigningV
     [ObservableProperty] private string _title = "Players";
     private readonly IPlayerService _playerService;
     [ObservableProperty] private ObservableCollection<Player> _players = new ObservableCollection<Player>();
-
+    [ObservableProperty] private Player? _selectedPlayer;
+    
     public PlayersViewModel(IPlayerService playerService)
     {
         _playerService = playerService;
@@ -54,5 +55,22 @@ public partial class PlayersViewModel : ViewModelBase, IRecipient<PlayerSigningV
     public async void Receive(PlayerSigningViewModel.PlayerAddedMessage message)
     {
         await LoadPlayersAsync();
+    }
+    
+    [RelayCommand]
+    private void ShowPlayersDetails(Player? player)
+    {
+        if (player is null)
+        {
+            return;
+        }
+
+        var window = App.Current.GetService<PlayerDetails>();
+        
+        if(window.DataContext is PlayerDetailsViewModel vm)
+        {
+            vm.Player = player;
+            window.Show();
+        }
     }
 }

@@ -6,11 +6,12 @@
         xmlns:models="clr-namespace:GranieManager.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GranieManager.Views.PlayersView"
-        x:DataType="viewModels:PlayersViewModel">
-        
+        x:DataType="viewModels:PlayersViewModel"
+        x:Name="playersView"
+        d:DataContext="{d:DesignInstance viewModels:PlayersViewModel}">
         <StackPanel>
                 <TextBlock FontSize="30" Margin="10" Text="{Binding Title}"/>
-                <ListBox Margin="10" CornerRadius="10" FontSize="20" ItemsSource="{Binding Players}">
+                <ListBox Margin="10" CornerRadius="10" FontSize="20" ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}" DoubleTapped="OnPlayerDoubleTapped">
                         <ListBox.ItemTemplate>
                                 <DataTemplate x:DataType="models:Player">
                                         <TextBlock Text="{Binding Name}"/>
@@ -19,5 +20,4 @@
                 </ListBox>
                 <Button x:Name="PlayerSigningButton" FontSize="20" Width="200" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Content="Add new player" Command="{Binding PlayerSigningWindowCommand}"/>
         </StackPanel>
-        
 </UserControl>

@@ -49,7 +49,7 @@ public class PlayerService : IPlayerService
     public async Task TrainPlayerAsync(Player player, Training training)
     {
         player.Skill += training.SkillIncrease;
-        player.Fatigue += Math.Min(100, player.Fatigue + training.FatigueIncrease);
+        player.Fatigue = Math.Min(100, player.Fatigue + training.FatigueIncrease);
         player.Stress = Math.Min(100, player.Stress + training.StressIncrease);
         await _playerRepository.UpdateAsync(player);
     }

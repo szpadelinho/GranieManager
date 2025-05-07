@@ -10,13 +10,13 @@
     
     <StackPanel>
         <TextBlock FontSize="30" Margin="10" Text="{Binding Title}"/>
-        <ListBox Margin="10" CornerRadius="10" FontSize="20" ItemsSource="{Binding Tournaments}">
+        <ListBox Margin="10" CornerRadius="10" FontSize="20" ItemsSource="{Binding Tournaments}" SelectedItem="{Binding SelectedTournament }">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:Tournament">
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="PlayerSigningButton" FontSize="20" Width="200" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Content="Participate"/>
+        <Button x:Name="PlayerSigningButton" FontSize="20" Width="200" Margin="10" CornerRadius="10" HorizontalContentAlignment="Center" Content="Participate" Command="{Binding ParticipateInTournamentCommand}" CommandParameter="{Binding SelectedTournament}"/>
     </StackPanel>
 </UserControl>
